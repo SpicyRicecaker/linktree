@@ -1,28 +1,34 @@
-import type { Component } from 'solid-js';
-
-import logo from './logo.svg';
+import { Component, For } from 'solid-js';
 import styles from './App.module.css';
-// import { HelloWorld } from './HelloWorld';
+
+
+import { TbBrandGithub, TbBrandTwitter, TbBrandYoutube, TbBrandInstagram } from 'solid-icons/tb';
 
 const App: Component = () => {
-  return (
-    <div class={styles.App}>
-      <header class={styles.header}>
-        <img src={logo} class={styles.logo} alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          class={styles.link}
-          href="https://github.com/solidjs/solid"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn Solid Today
-        </a>
-      </header>
-    </div>
-  );
+    const links = [
+        { name: "Github", url: "https://github.com/SpicyRicecaker", icon: <TbBrandGithub/> },
+        { name: "YouTube", url: "https://www.youtube.com/channel/UCf2r-fNNJjfRc9cu-nRbNJA", icon: <TbBrandYoutube/> },
+        { name: "Twitter", url: "https://twitter.com/Awesomeisgolden", icon: <TbBrandTwitter/> },
+        { name: "Instagram", url: "https://www.instagram.com/spicy_ricecaker/", icon: <TbBrandInstagram/> }
+    ];
+    // return <div>{links[0].icon}</div>;
+    return (
+        <div class={styles.App}>
+            <header class={styles.header}>
+                <h1>@spicy_ricecaker</h1>
+            </header>
+            <ul class={styles.list}>
+                <For each={links}>
+                    {(link) => {
+                        return <li><a class={styles.link} href={link.url}>
+                                {link.icon}
+                                <span>{link.name}</span>
+                        </a></li>;
+                    }}
+                </For>
+            </ul>
+        </div>
+    );
 };
 
 export default App;
